@@ -1,0 +1,10 @@
+javalang
+torch
+torchvision
+torchaudio
+transformers
+torch-geometric
+scikit-learn
+matplotlib
+numpy
+pandas
