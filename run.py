@@ -1,8 +1,3 @@
-# ============================================================
-# RUN PIPELINE - gộp prepare/train/evaluate/visualize vào 1 file
-# NOTE: Code được chuyển nguyên khối từ notebook gốc.
-# Chỉ thêm import để dùng được sau khi tách các module lõi.
-# ============================================================
 
 from src.config import *
 from src.graph_builder import *

@@ -1,20 +1,5 @@
-# ============================================================
-# FEATURE EXTRACTOR - from notebook cells 9,11,15
-# NOTE: Code được chuyển nguyên khối từ notebook gốc.
-# Chỉ thêm import tương đối ở đầu file để các block chạy được khi tách module.
-# ============================================================
-
 from .config import *
 from .graph_builder import *
-
-# ============================================================
-# Statistical features for Type-3 / Type-4 improvement
-# ============================================================
-# Ý tưởng:
-# - Mỗi code snippet -> stat_vec: thống kê cấu trúc / API / literal / DFG
-# - Mỗi pair -> pair_stat: độ giống nhau API/type/literal/variable + độ lệch feature
-# - Classifier sẽ concat thêm [stat1, stat2, |stat1-stat2|, stat1*stat2, pair_stat]
-
 import math
 import re
 from typing import Set
@@ -156,9 +141,6 @@ def extract_code_stats(code: str, max_dfg_nodes: int = None):
         name = type(node).__name__
         stats["num_ast_nodes"] += 1
 
-        # depth: ưu tiên field depth nếu graph builder đã có, còn không sẽ tính riêng bên dưới
-        # Ở đây tính lại max depth bằng DFS bên dưới cho chắc chắn.
-
         if is_statement_node(node):
             stats["num_statements"] += 1
 
@@ -271,11 +253,11 @@ def extract_code_stats(code: str, max_dfg_nodes: int = None):
         pass
 
     raw = np.array([stats[k] for k in STAT_KEYS], dtype=np.float32)
-    # Log scale cho count feature để tránh feature lớn lấn át embedding.
+    
     raw = np.log1p(raw)
 
     stat_vec = torch.tensor(raw, dtype=torch.float)
-    # Chuyển set thành set string thuần để torch.save/load ổn định hơn
+    
     meta = {k: _to_plain_set(v) for k, v in meta.items()}
     return stat_vec, meta
 

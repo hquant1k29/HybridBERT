@@ -1,9 +1,3 @@
-# ============================================================
-# GRAPH BUILDER - from notebook cells 4,5,6,7,8,10
-# NOTE: Code được chuyển nguyên khối từ notebook gốc.
-# Chỉ thêm import tương đối ở đầu file để các block chạy được khi tách module.
-# ============================================================
-
 from .config import *
 
 @dataclass

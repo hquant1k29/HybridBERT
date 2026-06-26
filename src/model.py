@@ -1,9 +1,3 @@
-# ============================================================
-# MODEL - from notebook cell 12
-# NOTE: Code được chuyển nguyên khối từ notebook gốc.
-# Chỉ thêm import tương đối ở đầu file để các block chạy được khi tách module.
-# ============================================================
-
 from .config import *
 from .feature_extractor import STAT_VECTOR_DIM, PAIR_EXTRA_DIM
 
